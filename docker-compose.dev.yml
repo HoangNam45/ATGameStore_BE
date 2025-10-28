@@ -1,0 +1,65 @@
+services:
+  backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5002:5000"
+    environment:
+      # Server Configuration
+      - NODE_ENV=development
+      - PORT=5000
+      - FRONTEND_URL=http://localhost:3000
+
+      # File Upload Configuration
+      - MAX_FILE_SIZE=5MB
+      - UPLOAD_PATH=uploads/
+
+      # Security
+      - API_RATE_LIMIT=100
+
+      # Logging
+      - LOG_LEVEL=debug
+
+      # Firebase Configuration
+      - FIREBASE_API_KEY=AIzaSyA0nLPiKT8hdEdATu7SslVsYLDafYItV7w
+      - FIREBASE_AUTH_DOMAIN=gamestore-9fd3e.firebaseapp.com
+      - FIREBASE_PROJECT_ID=gamestore-9fd3e
+      - FIREBASE_STORAGE_BUCKET=gamestore-9fd3e.firebasestorage.app
+      - FIREBASE_MESSAGING_SENDER_ID=887415480611
+      - FIREBASE_APP_ID=1:887415480611:web:ddd5d34734f44a779d2c96
+
+      # Firebase Admin SDK Configuration
+      - FIREBASE_CLIENT_EMAIL=firebase-adminsdk-fbsvc@gamestore-9fd3e.iam.gserviceaccount.com
+      - FIREBASE_PRIVATE_KEY=-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCkwDZG4RwCcOlz\nrrEtc1iO286xffZI9lAIAVmO2V5Xdcp6MwVg+VvyMXs+UsWCEtHjhtQ46akgHqr8\npjg2pcH0Ykv0zL+xjmDbgxfBRueoMTvIu/AjC4T3Nv0W0rNMnei0ds3DtfjGyxEY\nCMlWxVQaY+nU2g8DM6oKHV0XMWrkgoKLNqbdF7YlgPezvx324sr/1mImN7cW762F\nZlGZ9aZBXm767ULLHn76oYKK69LJ577a0Y73eug9trSGZMRlQevjabcypF5sJuUq\nFT6hUKhw5sOb8e/9YYiZbY2RInAeZNibd4Kgg//NYLocnUjJQznwKw1BwKUmiOPN\n107j/wFdAgMBAAECggEAI6bMmA4Cp6yTeEsnYDSDx3Zdhh9B+owCyZixLq5vMfH1\nfPgpg9CySvjWOKhkwT8dWGVG64H07VR1n/LAW2MHU8EpurHMEbpDz3zQ2Sxk2Qq+\nazPwRUUq4uxtXFEAJ+ZMAzFqWZ25Vht/eXn9R9+v0X4pjbwaX5EAjOvJx0kUXppe\ncjUEToSAnzIJZWI9wlQmqSwII3FxXqa+o5L/jrfbL8Iphv4vq4MA1Sa//ngD5jlb\nZ05XrG1iLbLLDDUDfgT/hkfzAmk6YH5r9RxcPyGGAA5Zf4FGqV+q1AAK+dn2BcGQ\ntXLv6Co/r+rYCrEdc33POzPjZtufKQB1QvMrUrGFQQKBgQDYCEMqMq3ehN3uf3v7\nuB5Sa5ffcex3WGYomQ9vos7Yz8f9wdMGr5IV05/3PmLudccuVmLFH+uA/iJAqiCJ\nroUxiObI9EP49oM0Y5joNhJwzau0cnv04yE4vxCX+Iq+LfGJMsKwTT1Q5/Wck326\nu3oqmyzWj/xkOm8YwSdH3YVbOQKBgQDDOydbPlhiaM+lwNmx69eyENsrhvUPATc4\nINagqW8wXtOKOJDtMaF8+Dmph9Bwi3wyyMdUR5odXSqD+uFHZzIIKqZJk1IMsIHt\nSnggDu8iINwVKFPlwSUyEyLRPj+JOKA/uO58/wLQXBzPhwIqSvSofrTzmm0aUV/B\nGJfxQhnDRQKBgQCdSBauSEtx8EYr98DqmTfqRc9CrQy+Lyvhbt5gJqZ2D4DJbS4Y\ndgbjwTl7pn4cor8rK1Wpsv2g4mVJsxMRanAqikOMFtrODZukrsaKeaOfYP4b2CYL\nOrnbOK/6FMfeglCR1NUNyo5Tsy2Mm400QH5HOsbASAA3cJul6CqTFeKbcQKBgDLy\n6gdu0sQD1ETOekFraePncDsAwk1DJPT55OkSrpix9oS41GGCNUGWyf2LGwNz81qR\neStucDK/kIvW2hm3PaBR+Ql0b9It8gpKB+Vd4FxItQa0eoiYCivyQIDYvN4DsBZR\nHbPzHPnhQAeMlS0SWJzsTC7SmyxmFhYfY++rL2v9AoGBAM2wIdIq1GTqnVy9Ya2I\nG2X7BuTYn2InjE+tj0RRPr8kx/7u3cpVRwv9LKzTpYvtnhHsElJ6ez1tBwdocvf1\nEZMGPUnE4K2W13saFrA0C5KJFmcgYaNgDELPf/QkHinwk5ljdgep8G64NEezSCHB\nUummihMqnh2XUcCsvVgADm9q\n-----END PRIVATE KEY-----\n
+
+      # Email Configuration
+      - EMAIL_USER=namin3k@gmail.com
+      - EMAIL_PASS=chkp dwix yhef pxtx
+
+      # Bank Configuration
+      - BANK_ID=970418
+      - BANK_ACCOUNT=8816728313
+      - BANK_NAME=NGUYEN HUU HOANG NAM
+
+      # SePay Configuration
+      - SEPAY_QR_API_URL=https://qr.sepay.vn/img
+      - SEPAY_VIRTUAL_ACCOUNT=96247VVHYNOL806
+      - SEPAY_BANK_CODE=BIDV
+
+      # Encryption
+      - ENCRYPTION_KEY=4d8a9f2e1c6b5a3d7e9f2a5c8b6d4e7f1a3c9e5b2d8f6a4c7e1b9d3f5a8c2e6
+
+      # Ngrok Configuration
+      - NGROK_AUTHTOKEN=33z58BAGw5HWSn4jpwU8n8E1kNv_7DsEBvuiCCWZgAkSPXhoy
+    volumes:
+      # Mount source code for live reload
+      - .:/app
+      - /app/node_modules
+      # Persist uploaded images
+      - uploads_data:/app/uploads
+    command: npm run dev
+    restart: unless-stopped
+
+volumes:
+  uploads_data:

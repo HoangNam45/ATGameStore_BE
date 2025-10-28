@@ -1,0 +1,65 @@
+services:
+  backend:
+    image: nhnam/shopacc-backend:latest
+    ports:
+      - "5002:5000"
+    environment:
+      # Server Configuration
+      - NODE_ENV=production
+      - PORT=5000
+      - FRONTEND_URL=https://at-game-store-fe-v2mo.vercel.app
+
+      # File Upload Configuration
+      - MAX_FILE_SIZE=5MB
+      - UPLOAD_PATH=uploads/
+
+      # Security
+      - API_RATE_LIMIT=100
+
+      # Logging
+      - LOG_LEVEL=info
+
+      # Firebase Configuration
+      - FIREBASE_API_KEY=${FIREBASE_API_KEY}
+      - FIREBASE_AUTH_DOMAIN=${FIREBASE_AUTH_DOMAIN}
+      - FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}
+      - FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET}
+      - FIREBASE_MESSAGING_SENDER_ID=${FIREBASE_MESSAGING_SENDER_ID}
+      - FIREBASE_APP_ID=${FIREBASE_APP_ID}
+
+      # Firebase Admin SDK Configuration
+      - FIREBASE_CLIENT_EMAIL=${FIREBASE_CLIENT_EMAIL}
+      - FIREBASE_PRIVATE_KEY=${FIREBASE_PRIVATE_KEY}
+
+      # Email Configuration
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+
+      # Bank Configuration
+      - BANK_ID=${BANK_ID}
+      - BANK_ACCOUNT=${BANK_ACCOUNT}
+      - BANK_NAME=${BANK_NAME}
+
+      # SePay Configuration
+      - SEPAY_QR_API_URL=${SEPAY_QR_API_URL}
+      - SEPAY_VIRTUAL_ACCOUNT=${SEPAY_VIRTUAL_ACCOUNT}
+      - SEPAY_BANK_CODE=${SEPAY_BANK_CODE}
+
+      # Encryption
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+
+      # Ngrok Configuration
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    volumes:
+      # Persist uploaded images
+      - uploads_data:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  uploads_data:

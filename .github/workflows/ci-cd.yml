@@ -32,6 +32,7 @@ jobs:
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
+    environment: DOCKERHUB
     if: github.event_name == 'push'
 
     steps:
@@ -76,6 +77,7 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
+    environment: PRODUCTION
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
 
     steps:

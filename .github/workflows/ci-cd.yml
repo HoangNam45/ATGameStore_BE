@@ -77,7 +77,7 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-    environment: PRODUCTION
+    environment: DOCKERHUB
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
 
     steps:
@@ -86,14 +86,11 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.VPS_PORT }}
           script: |
             # Navigate to application directory
-            cd /opt/shopacc-backend || { echo "App directory not found"; exit 1; }
-
-            # Pull latest code (optional, if you want to update docker-compose files)
-            git pull origin main || git pull origin master
+            cd /shopacc-backend || { echo "App directory not found"; exit 1; }
 
             # Login to DockerHub
             echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
@@ -116,4 +113,4 @@ jobs:
             # Show application logs (last 20 lines)
             docker-compose logs --tail=20
 
-            echo "✅ Deployment completed successfully!"
+            echo "Deployment completed successfully!"

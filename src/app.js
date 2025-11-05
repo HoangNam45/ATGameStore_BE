@@ -61,12 +61,24 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || "development",
+    version: "1.0.0",
+  });
+});
+
 app.get("/", (req, res) => {
   res.json({
     message: "Welcome to ShopAcc Backend Server",
     version: "1.0.0",
 
     endpoints: {
+      health: "GET /health",
       images: {
         upload: "POST /api/images/upload",
         delete: "DELETE /api/images/:filename",

@@ -90,7 +90,7 @@ jobs:
           port: ${{ secrets.VPS_PORT }}
           script: |
             # Navigate to application directory
-            cd /shopacc-backend || { echo "App directory not found"; exit 1; }
+            cd shopacc-backend || { echo "App directory not found"; exit 1; }
 
             # Login to DockerHub
             echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
